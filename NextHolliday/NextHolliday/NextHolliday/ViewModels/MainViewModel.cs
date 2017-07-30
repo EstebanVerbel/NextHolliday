@@ -31,9 +31,47 @@ namespace NextHolliday.ViewModels
 
         public MainViewModel()
         {
+            DateTime centuryBegin = new DateTime(2017, 1, 1);
+            DateTime currentDate = DateTime.Now;
 
+            long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
+            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+
+            //_hours = elapsedSpan.Hours;
+            //_minutes = elapsedSpan.Minutes;
+            //_seconds = elapsedSpan.Seconds;
+
+            RemainingTime = new Models.RemainingTime();
+
+            _days = elapsedSpan.Days;
+            _hours = elapsedSpan.Hours;
+
+            RemainingTime.Days = _days;
+            RemainingTime.Hours = _hours;
+            RemainingTime.Minutes = _minutes;
+            RemainingTime.Hours = _hours;
         }
 
+        #endregion
+
+        private int _days;
+        private int _hours;
+        private int _minutes;
+        private int _seconds;
+
+        #region -- Commands --
+
+        private void UpdateRemainingTimeCommand()
+        {
+            if (IsBusy)
+                return;
+
+            RemainingTime.Hours = _hours;
+            RemainingTime.Minutes = _minutes;
+            RemainingTime.Hours = _hours;
+
+        }
+        
         #endregion
 
     }

@@ -4,7 +4,15 @@ namespace NextHolliday.Models
 {
     public class RemainingTime : ObservableObject
     {
-        
+
+        private int _days;
+
+        public int Days
+        {
+            get { return _days; }
+            set { _days = value; OnPropertyChanged(); }
+        }
+
         private int _hours;
 
         public int Hours
