@@ -5,11 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace NextHolliday.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+
+        private DateTime _nextHollidayDate;
 
         #region -- Properties --
 
@@ -31,33 +34,44 @@ namespace NextHolliday.ViewModels
 
         public MainViewModel()
         {
-            DateTime centuryBegin = new DateTime(2017, 1, 1);
+            _nextHollidayDate = new DateTime(2017, 12, 25);
             DateTime currentDate = DateTime.Now;
 
-            long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
+            long elapsedTicks = _nextHollidayDate.Ticks - currentDate.Ticks;
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+            
+            RemainingTime = new RemainingTime();
+            
+            RemainingTime.Days = elapsedSpan.Days;
+            RemainingTime.Hours = elapsedSpan.Hours;
+            RemainingTime.Minutes = elapsedSpan.Minutes;
+            RemainingTime.Seconds = elapsedSpan.Seconds;
+            
+            // Attach a couple event handlers.
+            Device.StartTimer(TimeSpan.FromMilliseconds(16), OnTimerTick);
 
-            //_hours = elapsedSpan.Hours;
-            //_minutes = elapsedSpan.Minutes;
-            //_seconds = elapsedSpan.Seconds;
 
-            RemainingTime = new Models.RemainingTime();
-
-            _days = elapsedSpan.Days;
-            _hours = elapsedSpan.Hours;
-
-            RemainingTime.Days = _days;
-            RemainingTime.Hours = _hours;
-            RemainingTime.Minutes = _minutes;
-            RemainingTime.Hours = _hours;
         }
-
+        
         #endregion
 
-        private int _days;
-        private int _hours;
-        private int _minutes;
-        private int _seconds;
+        
+
+        private bool OnTimerTick()
+        {
+            DateTime currentDate = DateTime.Now;
+
+            long elapsedTicks = _nextHollidayDate.Ticks - currentDate.Ticks;
+            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+
+            RemainingTime.Days = elapsedSpan.Days;
+            RemainingTime.Hours = elapsedSpan.Hours;
+            RemainingTime.Minutes = elapsedSpan.Minutes;
+            RemainingTime.Seconds = elapsedSpan.Seconds;
+            
+            return true;
+        }
+
 
         #region -- Commands --
 
@@ -66,13 +80,13 @@ namespace NextHolliday.ViewModels
             if (IsBusy)
                 return;
 
-            RemainingTime.Hours = _hours;
-            RemainingTime.Minutes = _minutes;
-            RemainingTime.Hours = _hours;
+            
 
         }
         
         #endregion
+
+
 
     }
 }

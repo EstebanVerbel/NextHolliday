@@ -4,8 +4,13 @@
              xmlns:local="clr-namespace:NextHolliday"
              x:Class="NextHolliday.MainPage">
 
-  <Label Text="{Binding RemainingTime.Days}"
-           VerticalOptions="Center"
-           HorizontalOptions="Center" />
+  <StackLayout>
+
+    <Label Text="{Binding RemainingTime.Days}" />
+    <Label Text="{Binding RemainingTime.Hours}" />
+    <Label Text="{Binding RemainingTime.Minutes}" />
+    <Label Text="{Binding RemainingTime.Seconds}" />
+  
+  </StackLayout>
 
 </ContentPage>
