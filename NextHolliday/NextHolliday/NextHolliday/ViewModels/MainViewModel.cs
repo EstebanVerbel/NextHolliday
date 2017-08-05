@@ -34,8 +34,10 @@ namespace NextHolliday.ViewModels
 
         public MainViewModel()
         {
+
             _nextHollidayDate = new DateTime(2017, 12, 25);
             DateTime currentDate = DateTime.Now;
+
 
             long elapsedTicks = _nextHollidayDate.Ticks - currentDate.Ticks;
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
