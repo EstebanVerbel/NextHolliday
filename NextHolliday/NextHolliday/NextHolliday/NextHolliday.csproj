@@ -43,6 +43,7 @@
     </Compile>
     <Compile Include="Models\Holliday.cs" />
     <Compile Include="Models\RemainingTime.cs" />
+    <Compile Include="Models\Repository\HollidayLoader.cs" />
     <Compile Include="Models\Repository\IStreamLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
