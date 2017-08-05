@@ -41,6 +41,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Holliday.cs" />
     <Compile Include="Models\RemainingTime.cs" />
     <Compile Include="Models\Repository\IStreamLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

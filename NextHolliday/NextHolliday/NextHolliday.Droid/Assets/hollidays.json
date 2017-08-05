@@ -1,24 +1,18 @@
 [
-    {
-		"Country": "Canada",
-		"Province": "Ontario",
-		"Hollidays":
-			{
-				"Holliday":
-					[
-						{
-							"Name": "Civic Day",
-							"Year" : "2017",
-							"Month": "8",
-							"Day": "7"
-						},
-						{
-							"Name": "Labour Day",
-							"Year" : "2017",
-							"Month": "9",
-							"Day": "4"
-						}
-					]
-			}	
-    }
+  {
+    "Country": "Canada",
+    "Province": "Ontario",
+    "Name": "Civic Day",
+    "Year": "2017",
+    "Month": "8",
+    "Day": "7"
+  },
+  {
+    "Country": "Canada",
+    "Province": "Ontario",
+    "Name": "Labour Day",
+    "Year": "2017",
+    "Month": "9",
+    "Day": "4"
+  }
 ]
