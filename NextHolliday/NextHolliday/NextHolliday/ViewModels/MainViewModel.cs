@@ -49,8 +49,7 @@ namespace NextHolliday.ViewModels
             
             // Attach a couple event handlers.
             Device.StartTimer(TimeSpan.FromMilliseconds(16), OnTimerTick);
-
-
+            
         }
         
         #endregion

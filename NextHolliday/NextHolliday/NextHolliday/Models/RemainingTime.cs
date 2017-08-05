@@ -10,7 +10,14 @@ namespace NextHolliday.Models
         public int Days
         {
             get { return _days; }
-            set { _days = value; OnPropertyChanged(); }
+            set
+            {
+                if (_days != value)
+                {
+                    _days = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         private int _hours;
@@ -18,7 +25,14 @@ namespace NextHolliday.Models
         public int Hours
         {
             get { return _hours; }
-            set { _hours = value; OnPropertyChanged(); }
+            set
+            {
+                if (_hours != value)
+                {
+                    _hours = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         private int _minutes;
@@ -26,7 +40,14 @@ namespace NextHolliday.Models
         public int Minutes
         {
             get { return _minutes; }
-            set { _minutes = value; OnPropertyChanged(); }
+            set
+            {
+                if (_minutes != value)
+                {
+                    _minutes = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         private int _seconds;
