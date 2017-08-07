@@ -1,5 +1,6 @@
 ﻿using MvvmHelpers;
 using NextHolliday.Models;
+using NextHolliday.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,11 @@ namespace NextHolliday.ViewModels
 
             _nextHollidayDate = new DateTime(2017, 12, 25);
             DateTime currentDate = DateTime.Now;
+
+
+
+            List<Holliday> hollidays = HollidayLoader.LoadedHollidays;
+
 
 
             long elapsedTicks = _nextHollidayDate.Ticks - currentDate.Ticks;
