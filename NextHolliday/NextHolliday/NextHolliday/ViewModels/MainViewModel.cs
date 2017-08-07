@@ -35,16 +35,17 @@ namespace NextHolliday.ViewModels
 
         public MainViewModel()
         {
+            // get the next holliday
+            Holliday nextHolliday = GetNextHolliday();
 
-            _nextHollidayDate = new DateTime(2017, 12, 25);
+
+            _nextHollidayDate = nextHolliday.Date;
             DateTime currentDate = DateTime.Now;
 
 
 
-            List<Holliday> hollidays = HollidayLoader.LoadedHollidays.ToList();
-
-
-
+            
+            
             long elapsedTicks = _nextHollidayDate.Ticks - currentDate.Ticks;
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
             
@@ -57,12 +58,27 @@ namespace NextHolliday.ViewModels
             
             // Attach a couple event handlers.
             Device.StartTimer(TimeSpan.FromMilliseconds(16), OnTimerTick);
-            
         }
-        
+
         #endregion
 
-        
+
+        private Holliday GetNextHolliday()
+        {
+            List<Holliday> loadedHollidays = HollidayLoader.LoadedHollidays.ToList();
+
+            return loadedHollidays[1];
+
+            //foreach (Holliday holliday in loadedHollidays)
+            //{
+            //    if (true)
+            //    {
+
+            //    }
+            //}
+
+        }
+
 
         private bool OnTimerTick()
         {
@@ -78,6 +94,8 @@ namespace NextHolliday.ViewModels
             
             return true;
         }
+
+
 
 
         #region -- Commands --

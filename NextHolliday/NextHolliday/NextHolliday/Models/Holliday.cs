@@ -59,7 +59,7 @@ namespace NextHolliday.Models
         {
             get
             {
-                if (_date == null)
+                if (_date == default(DateTime))
                     _date = new DateTime(_year, _month, _day);
                 
                 return _date;
