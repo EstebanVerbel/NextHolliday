@@ -15,6 +15,11 @@ namespace NextHolliday.ViewModels
 
         private DateTime _nextHollidayDate;
 
+
+        private const string COUNTRY = "Canada"; // move these constants to it's own class
+        private const string PROVINCE = "Ontario";
+
+
         #region -- Properties --
 
         private RemainingTime _remainingTime;
@@ -37,14 +42,9 @@ namespace NextHolliday.ViewModels
         {
             // get the next holliday
             Holliday nextHolliday = GetNextHolliday();
-
-
+            
             _nextHollidayDate = nextHolliday.Date;
             DateTime currentDate = DateTime.Now;
-
-
-
-            
             
             long elapsedTicks = _nextHollidayDate.Ticks - currentDate.Ticks;
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
@@ -62,21 +62,36 @@ namespace NextHolliday.ViewModels
 
         #endregion
 
+        #region -- Private Methods --
 
         private Holliday GetNextHolliday()
         {
             List<Holliday> loadedHollidays = HollidayLoader.LoadedHollidays.ToList();
 
-            return loadedHollidays[1];
+            // this list will hold all loaded hollidays for selected COuntry and Province/State
+            List<Holliday> provinceCountryHollidays = new List<Holliday>();
+            
+            foreach (Holliday holliday in loadedHollidays)
+            {
+                if ((holliday.Country == COUNTRY) && (holliday.Province == PROVINCE))
+                    provinceCountryHollidays.Add(holliday);
+            }
 
-            //foreach (Holliday holliday in loadedHollidays)
-            //{
-            //    if (true)
-            //    {
+            // no hollidays exist for selected country and province
+            if (provinceCountryHollidays.Count == 0)
+                return null;
 
-            //    }
-            //}
+            // sort Hollidays by date 
+            provinceCountryHollidays.Sort((x, y) => x.Date.CompareTo(y.Date));
 
+            // return next Holliday by comparing it with today's date
+            for (int i = 0; i < provinceCountryHollidays.Count; i++)
+            {
+                if (provinceCountryHollidays[i].Date > DateTime.Now)
+                    return provinceCountryHollidays[i];
+            }
+
+            return null;
         }
 
 
@@ -95,23 +110,16 @@ namespace NextHolliday.ViewModels
             return true;
         }
 
-
-
-
+        #endregion
+        
         #region -- Commands --
 
         private void UpdateRemainingTimeCommand()
         {
-            if (IsBusy)
-                return;
-
             
-
         }
         
         #endregion
-
-
-
+        
     }
 }
