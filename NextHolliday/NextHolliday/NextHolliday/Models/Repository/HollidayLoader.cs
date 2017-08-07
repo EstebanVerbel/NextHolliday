@@ -13,13 +13,13 @@ namespace NextHolliday.Models.Repository
         
         public static IStreamLoader Loader { get; set; }
         
-        public static async Task<IEnumerable<Holliday>> Load()
+        
+        public static async Task Load()
         {
             Stream stream = OpenData();
 
             using (StreamReader reader = new StreamReader(stream))
             {
-                return JsonConvert.DeserializeObject<List<Holliday>>(await reader.ReadToEndAsync());
             }
         }
         

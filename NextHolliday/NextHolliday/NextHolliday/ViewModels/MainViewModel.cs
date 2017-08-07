@@ -41,7 +41,7 @@ namespace NextHolliday.ViewModels
 
 
 
-            List<Holliday> hollidays = HollidayLoader.LoadedHollidays;
+            List<Holliday> hollidays = HollidayLoader.LoadedHollidays.ToList();
 
 
 
