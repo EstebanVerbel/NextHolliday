@@ -13,6 +13,7 @@ namespace NextHolliday.Models.Repository
         
         public static IStreamLoader Loader { get; set; }
         
+        public static IEnumerable<Holliday> LoadedHollidays { get; private set; }
         
         public static async Task Load()
         {
@@ -20,6 +21,7 @@ namespace NextHolliday.Models.Repository
 
             using (StreamReader reader = new StreamReader(stream))
             {
+                LoadedHollidays = JsonConvert.DeserializeObject<IEnumerable<Holliday>>(await reader.ReadToEndAsync());
             }
         }
         
