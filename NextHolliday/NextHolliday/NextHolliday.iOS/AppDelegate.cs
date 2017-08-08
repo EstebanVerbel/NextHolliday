@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using NextHolliday.Models.Repository;
 
 namespace NextHolliday.iOS
 {
@@ -24,6 +25,10 @@ namespace NextHolliday.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+
+            // load hollidays from json file
+            HollidayLoader.Loader = new StreamLoader();
+            HollidayLoader.Load();
 
             return base.FinishedLaunching(app, options);
         }
