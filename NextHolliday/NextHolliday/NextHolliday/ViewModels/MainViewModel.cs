@@ -12,10 +12,7 @@ namespace NextHolliday.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-
-        private DateTime _nextHollidayDate;
-
-
+        
         private const string COUNTRY = "Canada"; // move these constants to it's own class
         private const string PROVINCE = "Ontario";
 
@@ -34,6 +31,19 @@ namespace NextHolliday.ViewModels
             }
         }
 
+        private Holliday _nextHolliday;
+
+        public Holliday NextHolliday
+        {
+            get { return _nextHolliday; }
+            set
+            {
+                _nextHolliday = value;
+                SetProperty(ref _nextHolliday, value);
+            }
+        }
+
+
         #endregion
 
         #region -- Constructor --
@@ -42,11 +52,12 @@ namespace NextHolliday.ViewModels
         {
             // get the next holliday
             Holliday nextHolliday = GetNextHolliday();
+
+            NextHolliday = nextHolliday;
             
-            _nextHollidayDate = nextHolliday.Date;
             DateTime currentDate = DateTime.Now;
             
-            long elapsedTicks = _nextHollidayDate.Ticks - currentDate.Ticks;
+            long elapsedTicks = _nextHolliday.Date.Ticks - currentDate.Ticks;
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
             
             RemainingTime = new RemainingTime();
@@ -93,13 +104,12 @@ namespace NextHolliday.ViewModels
 
             return null;
         }
-
-
+        
         private bool OnTimerTick()
         {
             DateTime currentDate = DateTime.Now;
 
-            long elapsedTicks = _nextHollidayDate.Ticks - currentDate.Ticks;
+            long elapsedTicks = _nextHolliday.Date.Ticks - currentDate.Ticks;
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
 
             RemainingTime.Days = elapsedSpan.Days;

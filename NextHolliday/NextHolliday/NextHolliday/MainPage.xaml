@@ -4,13 +4,24 @@
              xmlns:local="clr-namespace:NextHolliday"
              x:Class="NextHolliday.MainPage">
 
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Orientation="Horizontal">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
 
-    <Label Text="{Binding RemainingTime.Days}" FontSize="Large" />
-     <Label Text="{Binding RemainingTime.Hours}" FontSize="Large" />
-    <Label Text="{Binding RemainingTime.Minutes}" FontSize="Large" />
-    <Label Text="{Binding RemainingTime.Seconds}" FontSize="Large" />
-  
-  </StackLayout>
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" >
+            <Label Text="{Binding RemainingTime.Days}" FontSize="Large" />
+            <Label Text="days" FontSize="Large" />
+            <Label Text="{Binding RemainingTime.Hours}" FontSize="Large" />
+            <Label Text="hours" FontSize="Large" />
+            <Label Text="{Binding RemainingTime.Minutes}" FontSize="Large" />
+            <Label Text="mins" FontSize="Large" />
+            <Label Text="{Binding RemainingTime.Seconds}" FontSize="Large" />
+            <Label Text="secs" FontSize="Large" />
+        </StackLayout>
+
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+            <Label Text="Until" FontSize="Large"  />
+            <Label Text="{Binding NextHolliday.Name}" FontSize="Large"  />
+        </StackLayout>
+
+    </StackLayout>
 
 </ContentPage>
