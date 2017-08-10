@@ -14,5 +14,29 @@
     "Year": "2017",
     "Month": "9",
     "Day": "4"
+  },
+  {
+    "Country": "Canada",
+    "Province": "Ontario",
+    "Name": "Thanksgiving Day",
+    "Year": "2017",
+    "Month": "10",
+    "Day": "9"
+  },
+  {
+    "Country": "Canada",
+    "Province": "Ontario",
+    "Name": "Christmas Day",
+    "Year": "2017",
+    "Month": "12",
+    "Day": "25"
+  },
+  {
+    "Country": "Canada",
+    "Province": "Ontario",
+    "Name": "Boxing Day",
+    "Year": "2017",
+    "Month": "12",
+    "Day": "26"
   }
 ]
