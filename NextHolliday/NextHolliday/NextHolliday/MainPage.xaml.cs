@@ -1,4 +1,5 @@
-﻿using NextHolliday.ViewModels;
+﻿using NextHolliday.Services;
+using NextHolliday.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,12 @@ namespace NextHolliday
             InitializeComponent();
 
             MainViewModel viewModel = new MainViewModel();
-
             BindingContext = viewModel;
+        }
+
+        private void OnTapped(object sender, EventArgs e)
+        {
+            (BindingContext as MainViewModel).SayNextHolliday();
         }
     }
 }

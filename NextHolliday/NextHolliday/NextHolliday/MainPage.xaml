@@ -6,7 +6,11 @@
 
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
 
-        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" >
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnTapped"/>
+        </StackLayout.GestureRecognizers>
+
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
             <Label Text="{Binding RemainingTime.Days}" FontSize="Large" />
             <Label Text="days" FontSize="Large" />
             <Label Text="{Binding RemainingTime.Hours}" FontSize="Large" />
@@ -21,6 +25,8 @@
             <Label Text="Until" FontSize="Large"  />
             <Label Text="{Binding NextHolliday.Name}" FontSize="Large"  />
         </StackLayout>
+
+        <!--<Button Text="Speak" Clicked="Button_Clicked" />-->
 
     </StackLayout>
 

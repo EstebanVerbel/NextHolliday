@@ -1,6 +1,7 @@
 ﻿using MvvmHelpers;
 using NextHolliday.Models;
 using NextHolliday.Models.Repository;
+using NextHolliday.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,8 +43,7 @@ namespace NextHolliday.ViewModels
                 SetProperty(ref _nextHolliday, value);
             }
         }
-
-
+        
         #endregion
 
         #region -- Constructor --
@@ -121,7 +121,20 @@ namespace NextHolliday.ViewModels
         }
 
         #endregion
-        
+
+        #region -- Public Methods --
+
+        public void SayNextHolliday()
+        {
+            var textToSpeechService = ServiceManager.Container.Resolve(typeof(ITextToSpeech), "TextToSpeechService") as ITextToSpeech;
+
+            string text = $"{NextHolliday.Name} is in {RemainingTime.Days} days";
+
+            textToSpeechService.Speak(text);
+        }
+
+        #endregion
+
         #region -- Commands --
 
         private void UpdateRemainingTimeCommand()

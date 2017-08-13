@@ -1,7 +1,7 @@
 ﻿using AVFoundation;
 using NextHolliday.Services;
 
-namespace GreatQuotes
+namespace NextHolliday.iOS
 {
 	public class TextToSpeechService : ITextToSpeech
 	{

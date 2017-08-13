@@ -6,7 +6,7 @@ using NextHolliday.Services;
 // Note: this class requires at least Android SDK 5.0 (Lollypop)
 // to build due to changes in the TTS APIs.
 
-namespace GreatQuotes
+namespace NextHolliday.Droid
 {
 	public class TextToSpeechService : Java.Lang.Object, ITextToSpeech, TextToSpeech.IOnInitListener
 	{
