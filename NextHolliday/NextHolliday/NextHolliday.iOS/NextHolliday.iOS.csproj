@@ -92,6 +92,7 @@
     <Compile Include="AppDelegate.cs" />
     <BundleResource Include="Assets\hollidays.json" />
     <Compile Include="StreamLoader.cs" />
+    <Compile Include="TextToSpeechService.iOS.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />

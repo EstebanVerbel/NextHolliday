@@ -1,4 +1,4 @@
-﻿namespace NextHolliday.Models.Repository
+﻿namespace NextHolliday.Services
 {
     public interface ITextToSpeech
     {

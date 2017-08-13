@@ -116,6 +116,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StreamLoader.cs" />
+    <Compile Include="TextToSpeechService.Android.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\hollidays.json" />
