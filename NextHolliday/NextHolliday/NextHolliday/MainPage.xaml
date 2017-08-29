@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NextHolliday"
-             x:Class="NextHolliday.MainPage">
+             x:Class="NextHolliday.MainPage"
+             BackgroundColor="Purple" >
 
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
 
         <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
@@ -13,19 +14,19 @@
         </StackLayout.GestureRecognizers>
 
         <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-            <Label Text="{Binding RemainingTime.Days}" FontSize="Large" />
-            <Label Text="days" FontSize="Large" />
-            <Label Text="{Binding RemainingTime.Hours}" FontSize="Large" />
-            <Label Text="hours" FontSize="Large" />
-            <Label Text="{Binding RemainingTime.Minutes}" FontSize="Large" />
-            <Label Text="mins" FontSize="Large" />
-            <Label Text="{Binding RemainingTime.Seconds}" FontSize="Large" />
-            <Label Text="secs" FontSize="Large" />
+            <Label Text="{Binding RemainingTime.Days}" Style="{StaticResource boldLabelStyle}"  />
+            <Label Text="days" FontSize="Large" Style="{StaticResource boldLabelStyle}"  />
+            <Label Text="{Binding RemainingTime.Hours}" Style="{StaticResource boldLabelStyle}" />
+            <Label Text="hours" Style="{StaticResource boldLabelStyle}"  />
+            <Label Text="{Binding RemainingTime.Minutes}" Style="{StaticResource boldLabelStyle}" />
+            <Label Text="mins" Style="{StaticResource boldLabelStyle}" />
+            <Label Text="{Binding RemainingTime.Seconds}" Style="{StaticResource boldLabelStyle}" />
+            <Label Text="secs" Style="{StaticResource boldLabelStyle}" />
         </StackLayout>
 
         <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-            <Label Text="Until" FontSize="Large"  />
-            <Label Text="{Binding NextHolliday.Name}" FontSize="Large"  />
+            <Label Text="Until" Style="{StaticResource boldLabelStyle}" />
+            <Label Text="{Binding NextHolliday.Name}" Style="{StaticResource boldLabelStyle}" />
         </StackLayout>
 
         <!--<Button Text="Speak" Clicked="Button_Clicked" />-->

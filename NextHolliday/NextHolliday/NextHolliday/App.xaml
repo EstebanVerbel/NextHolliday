@@ -4,7 +4,18 @@
              x:Class="NextHolliday.App">
   <Application.Resources>
 
-    <!-- Application resource dictionary -->
+        <ResourceDictionary>
+
+            <Style x:Key="basicLabelStyle" TargetType="Label" >
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="boldLabelStyle" BasedOn="{StaticResource basicLabelStyle}" TargetType="Label" >
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+        </ResourceDictionary>
 
   </Application.Resources>
 </Application>
