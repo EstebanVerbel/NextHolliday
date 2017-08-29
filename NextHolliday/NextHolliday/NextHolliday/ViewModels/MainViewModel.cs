@@ -43,6 +43,11 @@ namespace NextHolliday.ViewModels
                 SetProperty(ref _nextHolliday, value);
             }
         }
+
+        public string DateToday
+        {
+            get { return DateTime.Now.ToString("MMMM dd, yyyy"); }
+        }
         
         #endregion
 

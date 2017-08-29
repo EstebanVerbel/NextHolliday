@@ -13,6 +13,11 @@
             <TapGestureRecognizer Tapped="OnTapped"/>
         </StackLayout.GestureRecognizers>
 
+        <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+            <Label Text="Today is:" Style="{StaticResource basicLabelStyle}" HorizontalOptions="Center"/>
+            <Label Text="{Binding DateToday}" Style="{StaticResource basicLabelStyle}"/>
+        </StackLayout>
+        
         <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
             <Label Text="{Binding RemainingTime.Days}" Style="{StaticResource boldLabelStyle}"  />
             <Label Text="days" FontSize="Large" Style="{StaticResource boldLabelStyle}"  />
@@ -29,7 +34,9 @@
             <Label Text="{Binding NextHolliday.Name}" Style="{StaticResource boldLabelStyle}" />
         </StackLayout>
 
-        <!--<Button Text="Speak" Clicked="Button_Clicked" />-->
+        <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+            <Label Text="{Binding NextHolliday.DateFormatted}" Style="{StaticResource basicLabelStyle}"/>
+        </StackLayout>
 
     </StackLayout>
 

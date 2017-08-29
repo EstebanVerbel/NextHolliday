@@ -65,6 +65,11 @@ namespace NextHolliday.Models
                 return _date;
             }
         }
-        
+
+        public string DateFormatted
+        {
+            get { return Date.ToString("MMMM dd, yyyy"); }
+        }
+
     }
 }

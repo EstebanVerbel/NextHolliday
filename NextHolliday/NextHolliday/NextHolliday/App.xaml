@@ -7,12 +7,14 @@
         <ResourceDictionary>
 
             <Style x:Key="basicLabelStyle" TargetType="Label" >
-                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontSize" Value="Small" />
                 <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
 
             <Style x:Key="boldLabelStyle" BasedOn="{StaticResource basicLabelStyle}" TargetType="Label" >
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Large" />
             </Style>
 
         </ResourceDictionary>
