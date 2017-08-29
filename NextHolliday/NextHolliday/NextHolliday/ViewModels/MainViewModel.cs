@@ -50,6 +50,8 @@ namespace NextHolliday.ViewModels
 
         public MainViewModel()
         {
+            IsBusy = true;
+
             // get the next holliday
             Holliday nextHolliday = GetNextHolliday();
 
@@ -69,6 +71,8 @@ namespace NextHolliday.ViewModels
             
             // Attach a couple event handlers.
             Device.StartTimer(TimeSpan.FromMilliseconds(16), OnTimerTick);
+
+            IsBusy = false;
         }
 
         #endregion
@@ -101,7 +105,7 @@ namespace NextHolliday.ViewModels
                 if (provinceCountryHollidays[i].Date > DateTime.Now)
                     return provinceCountryHollidays[i];
             }
-
+            
             return null;
         }
         

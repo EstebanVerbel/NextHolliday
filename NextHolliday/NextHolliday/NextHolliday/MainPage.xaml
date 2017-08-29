@@ -6,6 +6,8 @@
 
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
 
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
         <StackLayout.GestureRecognizers>
             <TapGestureRecognizer Tapped="OnTapped"/>
         </StackLayout.GestureRecognizers>
