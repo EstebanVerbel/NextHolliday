@@ -13,7 +13,7 @@ namespace NextHolliday
         {
             InitializeComponent();
 
-            MainPage = new NextHolliday.MainPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()
