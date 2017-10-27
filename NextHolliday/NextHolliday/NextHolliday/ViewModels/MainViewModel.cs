@@ -48,6 +48,29 @@ namespace NextHolliday.ViewModels
         {
             get { return DateTime.Now.ToString("MMMM dd, yyyy"); }
         }
+
+        private bool _isCountryProvinceSaved;
+
+        public bool IsCountryProvincePicked
+        {
+            get { return _isCountryProvinceSaved; }
+            set
+            {
+                _isCountryProvinceSaved = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isDisplayNextHolliday;
+        public bool IsDisplayNextHolliday
+        {
+            get { return _isDisplayNextHolliday; }
+            set
+            {
+                _isDisplayNextHolliday = value;
+                OnPropertyChanged();
+            }
+        }
         
         #endregion
 
@@ -86,7 +109,7 @@ namespace NextHolliday.ViewModels
 
         private Holliday GetNextHolliday()
         {
-            List<Holliday> loadedHollidays = HollidayLoader.LoadedHollidays.ToList();
+            IEnumerable<Holliday> loadedHollidays = HollidayLoader.LoadedHollidays;
 
             // this list will hold all loaded hollidays for selected COuntry and Province/State
             List<Holliday> provinceCountryHollidays = new List<Holliday>();
