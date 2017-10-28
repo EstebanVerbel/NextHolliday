@@ -40,25 +40,40 @@ namespace NextHolliday.Droid.Helpers
 			}
 		}
 
-		#region Setting Constants
 
-		private const string SettingsKey = "settings_key";
-		private static readonly string SettingsDefault = string.Empty;
+        #region Setting Constants
 
-		#endregion
+        private const string CountryKey = "country_key";
+        private const string ProvinceKey = "province_key";
+
+        private static readonly string SettingsDefault = string.Empty;
+
+        #endregion
 
 
-		public static string GeneralSettings
-		{
-			get
-			{
-				return AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
-			}
-			set
-			{
-				AppSettings.AddOrUpdateValue(SettingsKey, value);
-			}
-		}
+        public static string CountrySetting
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(CountryKey, SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(CountryKey, value);
+            }
+        }
 
-	}
+        public static string ProvinceSetting
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(ProvinceKey, SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(ProvinceKey, value);
+            }
+        }
+
+    }
 }

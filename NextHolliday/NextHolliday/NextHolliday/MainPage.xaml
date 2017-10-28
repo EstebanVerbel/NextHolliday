@@ -5,38 +5,63 @@
              x:Class="NextHolliday.MainPage"
              BackgroundColor="Purple" >
 
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    <StackLayout HorizontalOptions="Center" 
+                         VerticalOptions="Center">
 
-        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <StackLayout.GestureRecognizers>
-            <TapGestureRecognizer Tapped="OnTapped"/>
-        </StackLayout.GestureRecognizers>
+            <StackLayout Grid.Row="0" 
+                         IsVisible="{Binding IsPickCountryAndProvince}" 
+                         HorizontalOptions="Center" 
+                         VerticalOptions="Center" 
+                         Spacing="0">
+                <Label Text="It works.." TextColor="White" />
+            </StackLayout>
 
-        <StackLayout HorizontalOptions="Center" Orientation="Vertical">
-            <Label Text="Today is:" Style="{StaticResource basicLabelStyle}" HorizontalOptions="Center"/>
-            <Label Text="{Binding DateToday}" Style="{StaticResource basicLabelStyle}"/>
-        </StackLayout>
-        
-        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-            <Label Text="{Binding RemainingTime.Days}" Style="{StaticResource boldLabelStyle}"  />
-            <Label Text="days" FontSize="Large" Style="{StaticResource boldLabelStyle}"  />
-            <Label Text="{Binding RemainingTime.Hours}" Style="{StaticResource boldLabelStyle}" />
-            <Label Text="hours" Style="{StaticResource boldLabelStyle}"  />
-            <Label Text="{Binding RemainingTime.Minutes}" Style="{StaticResource boldLabelStyle}" />
-            <Label Text="mins" Style="{StaticResource boldLabelStyle}" />
-            <Label Text="{Binding RemainingTime.Seconds}" Style="{StaticResource boldLabelStyle}" />
-            <Label Text="secs" Style="{StaticResource boldLabelStyle}" />
-        </StackLayout>
+            <StackLayout Grid.Row="1" 
+                         IsVisible="{Binding IsDisplayNextHolliday}" 
+                         HorizontalOptions="Center" 
+                         VerticalOptions="Center" 
+                         Spacing="0">
 
-        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-            <Label Text="Until" Style="{StaticResource boldLabelStyle}" />
-            <Label Text="{Binding NextHolliday.Name}" Style="{StaticResource boldLabelStyle}" />
-        </StackLayout>
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
-        <StackLayout HorizontalOptions="Center" Orientation="Vertical">
-            <Label Text="{Binding NextHolliday.DateFormatted}" Style="{StaticResource basicLabelStyle}"/>
-        </StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTapped"/>
+                </StackLayout.GestureRecognizers>
+
+                <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+                    <Label Text="Today is:" Style="{StaticResource basicLabelStyle}" HorizontalOptions="Center"/>
+                    <Label Text="{Binding DateToday}" Style="{StaticResource basicLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="{Binding RemainingTime.Days}" Style="{StaticResource boldLabelStyle}"  />
+                    <Label Text="days" FontSize="Large" Style="{StaticResource boldLabelStyle}"  />
+                    <Label Text="{Binding RemainingTime.Hours}" Style="{StaticResource boldLabelStyle}" />
+                    <Label Text="hours" Style="{StaticResource boldLabelStyle}"  />
+                    <Label Text="{Binding RemainingTime.Minutes}" Style="{StaticResource boldLabelStyle}" />
+                    <Label Text="mins" Style="{StaticResource boldLabelStyle}" />
+                    <Label Text="{Binding RemainingTime.Seconds}" Style="{StaticResource boldLabelStyle}" />
+                    <Label Text="secs" Style="{StaticResource boldLabelStyle}" />
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Until" Style="{StaticResource boldLabelStyle}" />
+                    <Label Text="{Binding NextHolliday.Name}" Style="{StaticResource boldLabelStyle}" />
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+                    <Label Text="{Binding NextHolliday.DateFormatted}" Style="{StaticResource basicLabelStyle}"/>
+                </StackLayout>
+
+            </StackLayout>
+
+        </Grid>
 
     </StackLayout>
 

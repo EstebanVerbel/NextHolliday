@@ -1,10 +1,7 @@
-﻿using NextHolliday.Services;
+﻿using NextHolliday.Helpers;
+using NextHolliday.Models;
 using NextHolliday.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace NextHolliday
@@ -16,7 +13,24 @@ namespace NextHolliday
             InitializeComponent();
 
             MainViewModel viewModel = new MainViewModel();
+
             BindingContext = viewModel;
+
+            if (string.IsNullOrEmpty(Settings.CountrySetting))
+            {
+                // set boolean to hide stacklayout with selection to pick country and province
+                viewModel.IsPickCountryAndProvince = true;
+                viewModel.IsDisplayNextHolliday = false;
+            }
+            else
+            {
+                // load data with picked values
+                string country = Settings.CountrySetting;
+                string province = Settings.ProvinceSetting;
+
+                viewModel.IsPickCountryAndProvince = false;
+                viewModel.IsDisplayNextHolliday = true;
+            }
         }
 
         private void OnTapped(object sender, EventArgs e)

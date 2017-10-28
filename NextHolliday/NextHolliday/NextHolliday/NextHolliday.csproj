@@ -46,7 +46,6 @@
     <Compile Include="Models\RemainingTime.cs" />
     <Compile Include="Models\Repository\HollidayLoader.cs" />
     <Compile Include="Models\Repository\IStreamLoader.cs" />
-    <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ITextToSpeech.cs" />
     <Compile Include="Services\ServiceManager.cs" />

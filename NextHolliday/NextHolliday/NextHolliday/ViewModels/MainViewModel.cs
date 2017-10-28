@@ -4,9 +4,6 @@ using NextHolliday.Models.Repository;
 using NextHolliday.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace NextHolliday.ViewModels
@@ -49,14 +46,14 @@ namespace NextHolliday.ViewModels
             get { return DateTime.Now.ToString("MMMM dd, yyyy"); }
         }
 
-        private bool _isCountryProvinceSaved;
+        private bool _isPickCountryAndProvince;
 
-        public bool IsCountryProvincePicked
+        public bool IsPickCountryAndProvince
         {
-            get { return _isCountryProvinceSaved; }
+            get { return _isPickCountryAndProvince; }
             set
             {
-                _isCountryProvinceSaved = value;
+                _isPickCountryAndProvince = value;
                 OnPropertyChanged();
             }
         }
@@ -70,7 +67,7 @@ namespace NextHolliday.ViewModels
                 _isDisplayNextHolliday = value;
                 OnPropertyChanged();
             }
-        }
+        } 
         
         #endregion
 
@@ -84,19 +81,19 @@ namespace NextHolliday.ViewModels
             Holliday nextHolliday = GetNextHolliday();
 
             NextHolliday = nextHolliday;
-            
+
             DateTime currentDate = DateTime.Now;
-            
+
             long elapsedTicks = _nextHolliday.Date.Ticks - currentDate.Ticks;
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-            
+
             RemainingTime = new RemainingTime();
-            
+
             RemainingTime.Days = elapsedSpan.Days;
             RemainingTime.Hours = elapsedSpan.Hours;
             RemainingTime.Minutes = elapsedSpan.Minutes;
             RemainingTime.Seconds = elapsedSpan.Seconds;
-            
+
             // Attach a couple event handlers.
             Device.StartTimer(TimeSpan.FromMilliseconds(16), OnTimerTick);
 

@@ -15,29 +15,42 @@ namespace NextHolliday.Helpers
 		{
 			get
 			{
-				return CrossSettings.Current;
-			}
+                return CrossSettings.Current;
+            }
 		}
 
-		#region Setting Constants
+        #region Setting Constants
 
-		private const string SettingsKey = "settings_key";
-		private static readonly string SettingsDefault = string.Empty;
+        private const string CountryKey = "country_key";
+        private const string ProvinceKey = "province_key";
 
-		#endregion
-
-
-		public static string GeneralSettings
+        private static readonly string SettingsDefault = string.Empty;
+        
+        #endregion
+        
+        public static string CountrySetting
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
+				return AppSettings.GetValueOrDefault(CountryKey, SettingsDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue(SettingsKey, value);
+				AppSettings.AddOrUpdateValue(CountryKey, value);
 			}
 		}
 
-	}
+        public static string ProvinceSetting
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(ProvinceKey, SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(ProvinceKey, value);
+            }
+        }
+        
+    }
 }
