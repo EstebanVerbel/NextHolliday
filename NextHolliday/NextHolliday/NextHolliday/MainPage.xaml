@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NextHolliday"
              x:Class="NextHolliday.MainPage"
-             BackgroundColor="Purple" >
+             BackgroundColor="White">
 
     <StackLayout HorizontalOptions="Center" 
-                         VerticalOptions="Center">
+                 VerticalOptions="Center">
 
         <Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
@@ -18,8 +18,43 @@
                          IsVisible="{Binding IsPickCountryAndProvince}" 
                          HorizontalOptions="Center" 
                          VerticalOptions="Center" 
-                         Spacing="0">
-                <Label Text="It works.." TextColor="White" />
+                         Spacing="10">
+
+                <Label HorizontalOptions="Center">
+                    Please Select your Country and State/Province
+                </Label>
+                
+                <Picker x:Name="countryPicker"
+                        HorizontalOptions="FillAndExpand" 
+                        TextColor="Gray"
+                        Title="Country">
+                    
+                    <Picker.Items>
+                        <x:String>Canada</x:String>
+                    </Picker.Items>
+
+                    <!--<Picker.Behaviors>
+                        <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                            <behaviors:InvokeCommandAction Command="{Binding StateSelectedCommand}" />
+                        </behaviors:EventHandlerBehavior>
+                    </Picker.Behaviors>-->
+
+                </Picker>
+
+                <Picker x:Name="statePicker"
+                        HorizontalOptions="FillAndExpand" 
+                        TextColor="Gray"
+                        Title="State/Province" >
+                    <Picker.Items>
+                        <x:String>Ontario</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Button Text="Submit"
+                        TextColor="White" 
+                        BackgroundColor="Green"
+                        IsEnabled="{Binding IsSubmitEnabled}" />
+
             </StackLayout>
 
             <StackLayout Grid.Row="1" 

@@ -1,9 +1,12 @@
 ﻿using MvvmHelpers;
+using NextHolliday.Helpers;
 using NextHolliday.Models;
 using NextHolliday.Models.Repository;
 using NextHolliday.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace NextHolliday.ViewModels
@@ -11,9 +14,19 @@ namespace NextHolliday.ViewModels
     public class MainViewModel : BaseViewModel
     {
         
-        private const string COUNTRY = "Canada"; // move these constants to it's own class
-        private const string PROVINCE = "Ontario";
 
+
+        private const string CANADA = "Canada"; // move these constants to it's own class
+        private const string ONTARIO = "Ontario";
+
+
+        #region -- Commands --
+
+        public ICommand SaveUserLocationSubmitCommand { get; private set; }
+        public ICommand CountrySelectedCommand { get; private set; }
+        public ICommand StateSelectedCommand { get; private set; }
+
+        #endregion
 
         #region -- Properties --
 
@@ -67,7 +80,22 @@ namespace NextHolliday.ViewModels
                 _isDisplayNextHolliday = value;
                 OnPropertyChanged();
             }
-        } 
+        }
+
+        private bool _isSubmitEnabled;
+        public bool IsSubmitEnabled
+        {
+            get { return _isSubmitEnabled; }
+            set { _isSubmitEnabled = value; OnPropertyChanged(); }
+        }
+        
+        public string SelectedCountry { get; set; }
+        
+        public string SelectedState { get; set; }
+        
+        public ObservableCollection<string> Countries { get; set; }
+        
+        public ObservableCollection<string> States { get; set; }
         
         #endregion
 
@@ -75,6 +103,49 @@ namespace NextHolliday.ViewModels
 
         public MainViewModel()
         {
+            IsSubmitEnabled = false;
+            Countries = new ObservableCollection<string>();
+            States = new ObservableCollection<string>();
+
+            Countries.Add(CANADA);
+            States.Add(ONTARIO);
+
+            SaveUserLocationSubmitCommand = new Command(() =>
+            {
+                if (!string.IsNullOrEmpty(SelectedCountry))
+                {
+                    Settings.CountrySetting = SelectedCountry;
+                }
+                
+                if (!string.IsNullOrEmpty(SelectedState))
+                {
+                    Settings.ProvinceSetting = SelectedState;
+                }
+                
+
+                // hide / display
+                IsPickCountryAndProvince = false;
+
+                
+
+                // I NEED TO CALL METHOD THAT GETS NEXT HOLLIDAY
+
+
+                IsDisplayNextHolliday = true;
+            });
+
+
+            StateSelectedCommand = new Command(() => 
+            {
+                int debug = 0;
+            });
+
+
+
+
+
+            // I NEED TO MOVE ALL THIS CODE TO A COMMAND (BELOW)
+            
             IsBusy = true;
 
             // get the next holliday
@@ -113,7 +184,7 @@ namespace NextHolliday.ViewModels
             
             foreach (Holliday holliday in loadedHollidays)
             {
-                if ((holliday.Country == COUNTRY) && (holliday.Province == PROVINCE))
+                if ((holliday.Country == CANADA) && (holliday.Province == ONTARIO))
                     provinceCountryHollidays.Add(holliday);
             }
 
@@ -161,6 +232,8 @@ namespace NextHolliday.ViewModels
 
             textToSpeechService.Speak(text);
         }
+
+        
 
         #endregion
 
