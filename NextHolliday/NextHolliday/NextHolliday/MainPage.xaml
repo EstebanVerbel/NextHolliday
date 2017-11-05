@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NextHolliday"
              x:Class="NextHolliday.MainPage"
-             BackgroundColor="White">
+             BackgroundColor="Purple">
 
     <StackLayout HorizontalOptions="Center" 
                  VerticalOptions="Center">
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
         <Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
@@ -38,12 +40,11 @@
                         SelectedIndex="{Binding SelectedStateIndex}"
                         ItemsSource="{Binding States}" />
 
-
-
                 <Button Text="Submit"
                         TextColor="White" 
                         BackgroundColor="Green"
-                        IsEnabled="{Binding IsSubmitEnabled}" />
+                        IsEnabled="{Binding IsSubmitEnabled}"
+                        Command="{Binding SaveUserLocationSubmitCommand}"/>
 
             </StackLayout>
 
@@ -52,8 +53,6 @@
                          HorizontalOptions="Center" 
                          VerticalOptions="Center" 
                          Spacing="0">
-
-                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnTapped"/>

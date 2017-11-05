@@ -13,9 +13,6 @@ namespace NextHolliday.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        
-
-
         private const string CANADA = "Canada"; // move these constants to it's own class
         private const string ONTARIO = "Ontario";
 
@@ -29,9 +26,7 @@ namespace NextHolliday.ViewModels
         #region -- Commands --
 
         public ICommand SaveUserLocationSubmitCommand { get; private set; }
-        public ICommand CountrySelectedCommand { get; private set; }
-        public ICommand StateSelectedCommand { get; private set; }
-
+        
         #endregion
 
         #region -- Properties --
@@ -103,10 +98,10 @@ namespace NextHolliday.ViewModels
             {
                 _selectedCountryIndex = value;
 
-                if (value != -1)    
+                if (value != -1)
                     _selectedCountry = Countries[_selectedCountryIndex];
 
-                IsSubmitReady(); 
+                IsSubmitReady();
             }
         }
 
@@ -124,11 +119,14 @@ namespace NextHolliday.ViewModels
                 IsSubmitReady();
             }
         }
-        
+
+        public string SelectedCountry { set { _selectedCountry = value;  } }
+        public string SelectedState { set { _selectedState = value; } }
+
         public ObservableCollection<string> Countries { get; set; }
-        
+
         public ObservableCollection<string> States { get; set; }
-        
+
         #endregion
 
         #region -- Constructor --
@@ -139,8 +137,6 @@ namespace NextHolliday.ViewModels
             Countries = new ObservableCollection<string>();
             States = new ObservableCollection<string>();
             
-            
-
             Countries.Add(CANADA);
             Countries.Add("US");
             States.Add(ONTARIO);
@@ -148,60 +144,37 @@ namespace NextHolliday.ViewModels
 
             SaveUserLocationSubmitCommand = new Command(() =>
             {
-                //if (!string.IsNullOrEmpty(SelectedCountry))
-                //{
-                //    Settings.CountrySetting = SelectedCountry;
-                //}
-                
-                //if (!string.IsNullOrEmpty(SelectedState))
-                //{
-                //    Settings.ProvinceSetting = SelectedState;
-                //}
-                
+                if (!string.IsNullOrEmpty(_selectedCountry))
+                {
+                    Settings.CountrySetting = _selectedCountry;
+                }
 
+                if (!string.IsNullOrEmpty(_selectedState))
+                {
+                    Settings.ProvinceSetting = _selectedState;
+                }
+                
                 // hide / display
                 IsPickCountryAndProvince = false;
 
-                
-
-                // I NEED TO CALL METHOD THAT GETS NEXT HOLLIDAY
-
+                // initialize holliday count down
+                InitializeHollidayCountDown();
 
                 IsDisplayNextHolliday = true;
             });
 
 
-       
+
 
 
 
 
 
             // I NEED TO MOVE ALL THIS CODE TO A COMMAND (BELOW)
+
             
-            IsBusy = true;
 
-            // get the next holliday
-            Holliday nextHolliday = GetNextHolliday();
 
-            NextHolliday = nextHolliday;
-
-            DateTime currentDate = DateTime.Now;
-
-            long elapsedTicks = _nextHolliday.Date.Ticks - currentDate.Ticks;
-            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-
-            RemainingTime = new RemainingTime();
-
-            RemainingTime.Days = elapsedSpan.Days;
-            RemainingTime.Hours = elapsedSpan.Hours;
-            RemainingTime.Minutes = elapsedSpan.Minutes;
-            RemainingTime.Seconds = elapsedSpan.Seconds;
-
-            // Attach a couple event handlers.
-            Device.StartTimer(TimeSpan.FromMilliseconds(16), OnTimerTick);
-
-            IsBusy = false;
         }
 
         #endregion
@@ -214,10 +187,10 @@ namespace NextHolliday.ViewModels
 
             // this list will hold all loaded hollidays for selected COuntry and Province/State
             List<Holliday> provinceCountryHollidays = new List<Holliday>();
-            
+
             foreach (Holliday holliday in loadedHollidays)
             {
-                if ((holliday.Country == CANADA) && (holliday.Province == ONTARIO))
+                if ((holliday.Country == _selectedCountry) && (holliday.Province == _selectedState))
                     provinceCountryHollidays.Add(holliday);
             }
 
@@ -234,10 +207,10 @@ namespace NextHolliday.ViewModels
                 if (provinceCountryHollidays[i].Date > DateTime.Now)
                     return provinceCountryHollidays[i];
             }
-            
+
             return null;
         }
-        
+
         private bool OnTimerTick()
         {
             DateTime currentDate = DateTime.Now;
@@ -249,10 +222,10 @@ namespace NextHolliday.ViewModels
             RemainingTime.Hours = elapsedSpan.Hours;
             RemainingTime.Minutes = elapsedSpan.Minutes;
             RemainingTime.Seconds = elapsedSpan.Seconds;
-            
+
             return true;
         }
-        
+
         private void IsSubmitReady()
         {
             if (_selectedCountryIndex != -1
@@ -281,18 +254,34 @@ namespace NextHolliday.ViewModels
             textToSpeechService.Speak(text);
         }
 
-
-
-        #endregion
-        
-        #region -- Commands --
-
-        private void UpdateRemainingTimeCommand()
+        public void InitializeHollidayCountDown()
         {
-            
+            IsBusy = true;
+
+            // get the next holliday
+            Holliday nextHolliday = GetNextHolliday();
+
+            NextHolliday = nextHolliday;
+
+            DateTime currentDate = DateTime.Now;
+
+            long elapsedTicks = _nextHolliday.Date.Ticks - currentDate.Ticks;
+            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+
+            RemainingTime = new RemainingTime();
+
+            RemainingTime.Days = elapsedSpan.Days;
+            RemainingTime.Hours = elapsedSpan.Hours;
+            RemainingTime.Minutes = elapsedSpan.Minutes;
+            RemainingTime.Seconds = elapsedSpan.Seconds;
+
+            // Attach a couple event handlers.
+            Device.StartTimer(TimeSpan.FromMilliseconds(16), OnTimerTick);
+
+            IsBusy = false;
         }
-        
+
         #endregion
-        
+
     }
 }

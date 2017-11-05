@@ -13,12 +13,8 @@ namespace NextHolliday
             InitializeComponent();
 
             MainViewModel viewModel = new MainViewModel();
-
             BindingContext = viewModel;
-
-            countryPicker.SelectedIndex = -1;
-            statePicker.SelectedIndex = -1;
-
+            
             if (string.IsNullOrEmpty(Settings.CountrySetting))
             {
                 // set boolean to hide stacklayout with selection to pick country and province
@@ -31,7 +27,11 @@ namespace NextHolliday
                 string country = Settings.CountrySetting;
                 string province = Settings.ProvinceSetting;
 
+                viewModel.SelectedCountry = country;
+                viewModel.SelectedState = province;
+
                 viewModel.IsPickCountryAndProvince = false;
+                viewModel.InitializeHollidayCountDown();
                 viewModel.IsDisplayNextHolliday = true;
             }
         }
