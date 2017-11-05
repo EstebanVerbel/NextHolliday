@@ -19,6 +19,12 @@ namespace NextHolliday.ViewModels
         private const string CANADA = "Canada"; // move these constants to it's own class
         private const string ONTARIO = "Ontario";
 
+        #region -- Members --
+
+        private string _selectedCountry;
+        private string _selectedState;
+
+        #endregion
 
         #region -- Commands --
 
@@ -88,10 +94,36 @@ namespace NextHolliday.ViewModels
             get { return _isSubmitEnabled; }
             set { _isSubmitEnabled = value; OnPropertyChanged(); }
         }
-        
-        public string SelectedCountry { get; set; }
-        
-        public string SelectedState { get; set; }
+
+        private int _selectedCountryIndex;
+        public int SelectedCountryIndex
+        {
+            get { return _selectedCountryIndex; }
+            set
+            {
+                _selectedCountryIndex = value;
+
+                if (value != -1)    
+                    _selectedCountry = Countries[_selectedCountryIndex];
+
+                IsSubmitReady(); 
+            }
+        }
+
+        private int _selectedStateIndex;
+        public int SelectedStateIndex
+        {
+            get { return _selectedStateIndex; }
+            set
+            {
+                _selectedStateIndex = value;
+
+                if (value != -1)
+                    _selectedState = States[_selectedStateIndex];
+
+                IsSubmitReady();
+            }
+        }
         
         public ObservableCollection<string> Countries { get; set; }
         
@@ -106,21 +138,25 @@ namespace NextHolliday.ViewModels
             IsSubmitEnabled = false;
             Countries = new ObservableCollection<string>();
             States = new ObservableCollection<string>();
+            
+            
 
             Countries.Add(CANADA);
+            Countries.Add("US");
             States.Add(ONTARIO);
+            States.Add("Quebec");
 
             SaveUserLocationSubmitCommand = new Command(() =>
             {
-                if (!string.IsNullOrEmpty(SelectedCountry))
-                {
-                    Settings.CountrySetting = SelectedCountry;
-                }
+                //if (!string.IsNullOrEmpty(SelectedCountry))
+                //{
+                //    Settings.CountrySetting = SelectedCountry;
+                //}
                 
-                if (!string.IsNullOrEmpty(SelectedState))
-                {
-                    Settings.ProvinceSetting = SelectedState;
-                }
+                //if (!string.IsNullOrEmpty(SelectedState))
+                //{
+                //    Settings.ProvinceSetting = SelectedState;
+                //}
                 
 
                 // hide / display
@@ -135,10 +171,7 @@ namespace NextHolliday.ViewModels
             });
 
 
-            StateSelectedCommand = new Command(() => 
-            {
-                int debug = 0;
-            });
+       
 
 
 
@@ -219,6 +252,21 @@ namespace NextHolliday.ViewModels
             
             return true;
         }
+        
+        private void IsSubmitReady()
+        {
+            if (_selectedCountryIndex != -1
+                && _selectedStateIndex != -1
+                && !string.IsNullOrEmpty(_selectedCountry)
+                && !string.IsNullOrEmpty(_selectedState))
+            {
+                IsSubmitEnabled = true;
+            }
+            else
+            {
+                IsSubmitEnabled = false;
+            }
+        }
 
         #endregion
 
@@ -233,10 +281,10 @@ namespace NextHolliday.ViewModels
             textToSpeechService.Speak(text);
         }
 
-        
+
 
         #endregion
-
+        
         #region -- Commands --
 
         private void UpdateRemainingTimeCommand()

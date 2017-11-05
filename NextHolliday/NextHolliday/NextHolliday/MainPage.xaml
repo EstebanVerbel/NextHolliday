@@ -23,32 +23,22 @@
                 <Label HorizontalOptions="Center">
                     Please Select your Country and State/Province
                 </Label>
-                
+
                 <Picker x:Name="countryPicker"
                         HorizontalOptions="FillAndExpand" 
                         TextColor="Gray"
-                        Title="Country">
-                    
-                    <Picker.Items>
-                        <x:String>Canada</x:String>
-                    </Picker.Items>
-
-                    <!--<Picker.Behaviors>
-                        <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
-                            <behaviors:InvokeCommandAction Command="{Binding StateSelectedCommand}" />
-                        </behaviors:EventHandlerBehavior>
-                    </Picker.Behaviors>-->
-
-                </Picker>
+                        Title="Country"
+                        SelectedIndex="{Binding SelectedCountryIndex}"
+                        ItemsSource="{Binding Countries}" />
 
                 <Picker x:Name="statePicker"
                         HorizontalOptions="FillAndExpand" 
                         TextColor="Gray"
-                        Title="State/Province" >
-                    <Picker.Items>
-                        <x:String>Ontario</x:String>
-                    </Picker.Items>
-                </Picker>
+                        Title="State/Province" 
+                        SelectedIndex="{Binding SelectedStateIndex}"
+                        ItemsSource="{Binding States}" />
+
+
 
                 <Button Text="Submit"
                         TextColor="White" 

@@ -15,7 +15,10 @@ namespace NextHolliday
             MainViewModel viewModel = new MainViewModel();
 
             BindingContext = viewModel;
-            
+
+            countryPicker.SelectedIndex = -1;
+            statePicker.SelectedIndex = -1;
+
             if (string.IsNullOrEmpty(Settings.CountrySetting))
             {
                 // set boolean to hide stacklayout with selection to pick country and province
