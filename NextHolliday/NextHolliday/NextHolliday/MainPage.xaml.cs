@@ -1,5 +1,4 @@
 ﻿using NextHolliday.Helpers;
-using NextHolliday.Models;
 using NextHolliday.ViewModels;
 using System;
 using Xamarin.Forms;
